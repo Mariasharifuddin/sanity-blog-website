@@ -1,5 +1,6 @@
 import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
+import AddToCartButton from './component/AddToCartButton';  // Add this import
 
 export const revalidate = 0; 
 
@@ -24,12 +25,12 @@ export default async function Home() {
               key={product._id}
               className="bg-white shadow-md rounded-lg overflow-hidden transition transform hover:scale-105 duration-300"
             >
-              <div className="relative w-full h-80">
+              <div className="relative w-full h-[350px]">
   <Image
     src={product.imageUrl}
     alt={product.title}
-    layout="fill"
-    objectFit="cover"
+    fill  
+    style={{ objectFit: 'cover' }}  
     className="rounded-t-lg"
   />
 </div>
@@ -39,6 +40,9 @@ export default async function Home() {
                   {product.title}
                 </h2>
                 <p className="text-gray-600">{product.description}</p>
+
+                
+                <AddToCartButton productId={product._id} />
               </div>
             </div>
           ))}
